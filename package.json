@@ -6,7 +6,9 @@
   "scripts": {
     "start:server": "cd ./server && npm run start",
     "start:client": "cd ./client && npm run start",
-    "start": "npm run start:server && npm run start:client"
+    "start": "npm run start:server && npm run start:client",
+    "codegen:server": "cd ./server && npm run codegen",
+    "codegen": "npm run codegen:server"
   },
   "repository": {
     "type": "git",

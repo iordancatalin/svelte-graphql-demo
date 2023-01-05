@@ -1,0 +1,8 @@
+overwrite: true
+schema: ../schema.graphql
+emitLegacyCommonJSImports: false
+generates:
+  src/generated/graphql.ts:
+    plugins: ["typescript", "typescript-resolvers"]
+  ./graphql.schema.json:
+    plugins: ["introspection"]
