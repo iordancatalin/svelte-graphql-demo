@@ -1,0 +1,70 @@
+{
+    "movies": [
+        {
+            "id": "movie-1555c94e-7cdb-491e-a2dd-6ea0e350db94",
+            "title": "The Batman",
+            "description": "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+            "duration": 176,
+            "imageURL": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_.jpg",
+            "directors": [
+                "Matt Reeves"
+            ],
+            "genres": [
+                "Action",
+                "Crime",
+                "Drama"
+            ],
+            "reviews": [
+                "review-feab19c7-aed6-402f-b8b0-880f0b38d7e1"
+            ],
+            "characters": [
+                {
+                    "id": "character-d29d11c9-a6be-40e8-8357-be948ca8a187",
+                    "actorId": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
+                    "name": "Batman"
+                },
+                {
+                    "id": "character-4f6982e5-05e3-4584-a795-bfef0bf230a9",
+                    "actorId": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
+                    "name": "Batman"
+                },
+                {
+                    "id": "character-a15da038-aab6-4271-bdd9-73dff19c088c",
+                    "actorId": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
+                    "name": "Batman"
+                }
+            ]
+        },
+        {
+            "id": "movie-9b888858-1690-4719-9be5-53cd235f40a3",
+            "title": "Avengers: Endgame",
+            "description": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+            "duration": 181,
+            "imageURL": "https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg",
+            "directors": [
+                "Anthony Russo",
+                "Joe Russo"
+            ],
+            "genres": [
+                "Action",
+                "Adventure",
+                "Drama"
+            ]
+        }
+    ],
+    "reviews": [
+        {
+            "id": "review-feab19c7-aed6-402f-b8b0-880f0b38d7e1",
+            "movieId": "movie-1555c94e-7cdb-491e-a2dd-6ea0e350db94",
+            "createdAt": "Thu Jan 05 2023 19:42:16 GMT+0200 (Eastern European Standard Time)",
+            "body": "Good movie",
+            "title": "My Review"
+        }
+    ],
+    "actors": [
+        {
+            "id": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
+            "name": "Robert Pattison"
+        }
+    ]
+}

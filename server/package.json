@@ -6,7 +6,9 @@
   "scripts": {
     "compile": "tsc",
     "start": "npm run compile && node ./dist/index.js",
-    "codegen": "graphql-codegen-esm --config codegen.yml"
+    "codegen": "graphql-codegen-esm --config codegen.yml",
+    "prestart": "npm run codegen",
+    "predev": "npm run codegen"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +16,8 @@
   "dependencies": {
     "@apollo/server": "^4.3.0",
     "graphql": "^16.6.0",
-    "pkg-up": "^4.0.0"
+    "pkg-up": "^4.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.16.2",

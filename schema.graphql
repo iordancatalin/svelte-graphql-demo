@@ -1,11 +1,55 @@
 type Query {
-    movies: [Movie!]!
+    allMovies: [Movie!]!,
+    moviesByGenre(genre: String!): [Movie!]!,
+    movieById(id: String!): Movie,
+    actors: [Actor!]!,
+}
+
+type Mutation {
+    createMovie(
+        title: String!,
+        description: String, 
+        genres: [String!]!, 
+        imageURL: String!, 
+        duration: Int!,
+        directors: [String!]!
+    ): Movie!,
+    deleteMovie(id: String!): String!,
+    createReview(movieId: String!, title: String!, body: String!): Review,
+    deleteReview(movieId: String!, reviewId: String!): String,
+    createActor(name: String!, imageURL: String!): Actor!,
+    deleteActor(id: String!): String,
+    createCharacter(movieId: String!, characterName: String!, actorId: String!): Character,
+    deleteCharacter(movieId:String!, id: String!): String,
 }
 
 type Movie {
+    id: String!
     title: String!,
     description: String,
     genres: [String!]!,
-    releaseYear: Int!,
-    imageURL: String
+    imageURL: String!,
+    duration: Int!,
+    directors: [String!]!,
+    reviews: [Review!]!,
+    characters: [Character!]!,
+}
+
+type Character {
+    id: String!,
+    name: String!,
+    playedBy: Actor
+}
+
+type Actor {
+    id: String!,
+    name: String!,
+    imageURL: String!,
+}
+
+type Review {
+    id: String!,
+    title: String!,
+    body: String!,
+    createdAt: String!
 }

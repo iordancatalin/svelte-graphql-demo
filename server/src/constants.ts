@@ -17,3 +17,4 @@ function rootBasedPath(name: string): string {
 }
 
 export const GRAPHQL_SCHEMA_PATH = rootBasedPath('schema.graphql');
+export const DB_PATH = join(SERVER_WORKSPACE_PKG_JSON_PATH, '..', 'db.json');
