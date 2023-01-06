@@ -7,7 +7,9 @@
     "dev": "rollup -c -w",
     "start": "sirv public --no-clear",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "codegen": "graphql-codegen"
+    "codegen": "graphql-codegen",
+    "prestart": "npm run codegen",
+    "predev": "npm run codegen"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.16.3",
