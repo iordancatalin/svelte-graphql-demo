@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ActorsPage from "./pages/ActorsPage.svelte";
-	import MoviesPage from "./pages/MoviesPage.svelte";
+	import ActorsPage from "./components/ActorsPage.svelte";
+	import MoviesPage from "./components/MoviesPage.svelte";
 
-	let selectedTab: "Movies" | "Actors" = "Movies";
+	let selectedTab: "Movies" | "Actors" = "Actors";
 </script>
 
 <section>
@@ -73,7 +73,6 @@
 		flex: 1;
 
 		overflow: auto;
-		padding: 10px;
 	}
 
 	.tab-item {

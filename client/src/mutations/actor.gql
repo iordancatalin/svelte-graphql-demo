@@ -1,0 +1,5 @@
+mutation CreateActor($name: String!, $imageURL: String!) {
+    createActor(name: $name, imageURL: $imageURL) {
+        id
+    }
+}

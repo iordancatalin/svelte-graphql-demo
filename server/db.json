@@ -22,16 +22,6 @@
                     "id": "character-d29d11c9-a6be-40e8-8357-be948ca8a187",
                     "actorId": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
                     "name": "Batman"
-                },
-                {
-                    "id": "character-4f6982e5-05e3-4584-a795-bfef0bf230a9",
-                    "actorId": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
-                    "name": "Batman"
-                },
-                {
-                    "id": "character-a15da038-aab6-4271-bdd9-73dff19c088c",
-                    "actorId": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
-                    "name": "Batman"
                 }
             ]
         },
@@ -64,7 +54,8 @@
     "actors": [
         {
             "id": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
-            "name": "Robert Pattison"
+            "name": "Robert Pattison",
+            "imageURL": "https://m.media-amazon.com/images/M/MV5BNzk0MDQ5OTUxMV5BMl5BanBnXkFtZTcwMDM5ODk5Mg@@._V1_QL75_UX140_CR0,0,140,140_.jpg"
         }
     ]
 }
