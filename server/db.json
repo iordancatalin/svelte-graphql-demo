@@ -56,6 +56,11 @@
             "id": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
             "name": "Robert Pattison",
             "imageURL": "https://m.media-amazon.com/images/M/MV5BNzk0MDQ5OTUxMV5BMl5BanBnXkFtZTcwMDM5ODk5Mg@@._V1_QL75_UX140_CR0,0,140,140_.jpg"
+        },
+        {
+            "id": "actor-e6477174-61de-4854-8c3d-fe59dd5e5e01",
+            "imageURL": "https://m.media-amazon.com/images/M/MV5BNmQ1MDJhYmUtNTJhYS00Njk2LTgyMmEtYmNhM2JiZGMwMTc0XkEyXkFqcGdeQXVyMzQwODQxNTU@._V1_QL75_UX140_CR0,12,140,140_.jpg",
+            "name": "Jenna Ortega"
         }
     ]
 }

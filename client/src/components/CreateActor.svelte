@@ -1,7 +1,10 @@
 <script lang="ts">
-    import { CreateActor } from "../graphql/generated";
+    import { CreateActor, ActorsDoc } from "../graphql/generated";
+    import { createEventDispatcher } from "svelte";
 
     let expanded = false;
+    let name: string;
+    let imageURL: string;
 
     const toggle = () => {
         expanded = !expanded;
@@ -10,12 +13,17 @@
     const createActor = async () => {
         await CreateActor({
             variables: {
-                imageURL: "",
-                name: "",
+                name,
+                imageURL,
             },
-        });
+            refetchQueries: (mutationResult) =>
+                !mutationResult.errors ? [ActorsDoc] : [],
+        }).then(() => {
+            name = "";
+            imageURL = "";
 
-        expanded = false;
+            expanded = false;
+        });
     };
 </script>
 
@@ -34,15 +42,17 @@
     <div class:expanded class="form-container">
         <div class="form-field">
             <label for="actor-name"> Name </label>
-            <input id="actor-name" type="text" />
+            <input bind:value={name} id="actor-name" type="text" />
         </div>
 
         <div class="form-field">
             <label for="actor-name"> Image URL </label>
-            <input id="actor-name" type="text" />
+            <input bind:value={imageURL} id="actor-name" type="text" />
         </div>
 
-        <button on:click={createActor}>Create</button>
+        <button on:click={createActor} class:disabled={!name || !imageURL}>
+            Create
+        </button>
     </div>
 </div>
 
@@ -68,21 +78,21 @@
         border-top-left-radius: 50px;
         border-bottom-left-radius: 50px;
 
-        background-color: #121111;
+        background-color: var(--background-side-banner);
         border: 0;
 
         color: var(--color-secondary);
     }
 
     .control-button:active {
-        background-color: #121111;
+        background-color: var(--background-side-banner);
     }
 
     .control-bar {
         width: 15px;
         height: 100%;
 
-        background-color: #121111;
+        background-color: var(--background-side-banner);
     }
 
     .form-container {
@@ -93,7 +103,7 @@
         flex-direction: column;
         gap: 10px;
 
-        background-color: #121111;
+        background-color: var(--background-side-banner);
 
         transition: width 0.5s;
     }
@@ -101,6 +111,7 @@
     .form-container.expanded {
         padding-top: 30px;
         padding-right: 15px;
+        padding-left: 15px;
 
         width: 400px;
     }
@@ -117,8 +128,8 @@
 
     .form-field input {
         color: var(--color-secondary);
-        background-color: #0d0c0c;
-        border: 0;
+        background-color: var(--background-side-banner-input);
+        border: 1px solid var(--color-secondary);
         padding: 10px;
         border-radius: 7px;
     }
@@ -128,5 +139,10 @@
         background-color: var(--color-secondary);
         color: var(--background-color);
         cursor: pointer;
+    }
+
+    .form-container button.disabled {
+        cursor: not-allowed;
+        background-color: var(--color-gray);
     }
 </style>

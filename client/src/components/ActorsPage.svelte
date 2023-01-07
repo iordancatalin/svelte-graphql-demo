@@ -1,15 +1,27 @@
 <script lang="ts">
-    import { Actors } from "../graphql/generated";
+    import { Actors, ActorsDoc, DeleteActor } from "../graphql/generated";
     import Actor from "./Actor.svelte";
     import CreateActor from "./CreateActor.svelte";
 
     $: actors = Actors({});
+
+    const handleDeleteActor = async (
+        deleteActorEvent: CustomEvent<{ id: string }>
+    ) => {
+        await DeleteActor({
+            variables: {
+                id: deleteActorEvent.detail.id,
+            },
+            refetchQueries: (mutationResult) =>
+                !mutationResult.errors ? [ActorsDoc] : [],
+        });
+    };
 </script>
 
 <section class="actors-container">
     <div class="actors-panel">
         {#each $actors?.data?.actors || [] as actor}
-            <Actor {actor} />
+            <Actor on:deleteActor={handleDeleteActor} {actor} />
         {/each}
     </div>
 

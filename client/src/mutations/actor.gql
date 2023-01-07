@@ -3,3 +3,7 @@ mutation CreateActor($name: String!, $imageURL: String!) {
         id
     }
 }
+
+mutation DeleteActor($id: String!) {
+    deleteActor(id: $id)
+}

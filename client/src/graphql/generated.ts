@@ -144,6 +144,13 @@ export type CreateActorMutationVariables = Exact<{
 
 export type CreateActorMutation = { __typename?: 'Mutation', createActor: { __typename?: 'Actor', id: string } };
 
+export type DeleteActorMutationVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DeleteActorMutation = { __typename?: 'Mutation', deleteActor?: string | null };
+
 export type ActorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -155,6 +162,11 @@ export const CreateActorDoc = gql`
   createActor(name: $name, imageURL: $imageURL) {
     id
   }
+}
+    `;
+export const DeleteActorDoc = gql`
+    mutation DeleteActor($id: String!) {
+  deleteActor(id: $id)
 }
     `;
 export const ActorsDoc = gql`
@@ -174,6 +186,18 @@ export const CreateActor = (
           ) => {
             const m = client.mutate<CreateActorMutation, CreateActorMutationVariables>({
               mutation: CreateActorDoc,
+              ...options,
+            });
+            return m;
+          }
+export const DeleteActor = (
+            options: Omit<
+              MutationOptions<any, DeleteActorMutationVariables>, 
+              "mutation"
+            >
+          ) => {
+            const m = client.mutate<DeleteActorMutation, DeleteActorMutationVariables>({
+              mutation: DeleteActorDoc,
               ...options,
             });
             return m;

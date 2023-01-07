@@ -38,6 +38,11 @@
 			--background-color: #171717;
 			--color-secondary: #ededed;
 			--color-white: #ffffff;
+			--color-gray: #bdbbbb;
+			--color-red: #ab0707;
+			--color-transparent-red: #ff000075;
+			--background-side-banner: #121111;
+			--background-side-banner-input: #0d0c0c;
 		}
 	</style>
 </svelte:head>
