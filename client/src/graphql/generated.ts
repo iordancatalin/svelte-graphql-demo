@@ -37,7 +37,6 @@ export type Movie = {
   __typename?: 'Movie';
   characters: Array<Character>;
   description?: Maybe<Scalars['String']>;
-  directors: Array<Scalars['String']>;
   duration: Scalars['Int'];
   genres: Array<Scalars['String']>;
   id: Scalars['String'];
@@ -74,7 +73,6 @@ export type MutationCreateCharacterArgs = {
 
 export type MutationCreateMovieArgs = {
   description?: InputMaybe<Scalars['String']>;
-  directors: Array<Scalars['String']>;
   duration: Scalars['Int'];
   genres: Array<Scalars['String']>;
   imageURL: Scalars['String'];
@@ -151,6 +149,17 @@ export type DeleteActorMutationVariables = Exact<{
 
 export type DeleteActorMutation = { __typename?: 'Mutation', deleteActor?: string | null };
 
+export type CreateMovieMutationVariables = Exact<{
+  title: Scalars['String'];
+  description: Scalars['String'];
+  genres: Array<Scalars['String']> | Scalars['String'];
+  imageURL: Scalars['String'];
+  duration: Scalars['Int'];
+}>;
+
+
+export type CreateMovieMutation = { __typename?: 'Mutation', createMovie: { __typename?: 'Movie', id: string } };
+
 export type ActorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -172,6 +181,19 @@ export const CreateActorDoc = gql`
 export const DeleteActorDoc = gql`
     mutation DeleteActor($id: String!) {
   deleteActor(id: $id)
+}
+    `;
+export const CreateMovieDoc = gql`
+    mutation CreateMovie($title: String!, $description: String!, $genres: [String!]!, $imageURL: String!, $duration: Int!) {
+  createMovie(
+    title: $title
+    description: $description
+    genres: $genres
+    imageURL: $imageURL
+    duration: $duration
+  ) {
+    id
+  }
 }
     `;
 export const ActorsDoc = gql`
@@ -212,6 +234,18 @@ export const DeleteActor = (
           ) => {
             const m = client.mutate<DeleteActorMutation, DeleteActorMutationVariables>({
               mutation: DeleteActorDoc,
+              ...options,
+            });
+            return m;
+          }
+export const CreateMovie = (
+            options: Omit<
+              MutationOptions<any, CreateMovieMutationVariables>, 
+              "mutation"
+            >
+          ) => {
+            const m = client.mutate<CreateMovieMutation, CreateMovieMutationVariables>({
+              mutation: CreateMovieDoc,
               ...options,
             });
             return m;

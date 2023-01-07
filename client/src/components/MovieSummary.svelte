@@ -45,7 +45,7 @@
         border-radius: 10px;
 
         width: 220px;
-        height: 220px;
+        height: 250px;
 
         overflow: hidden;
     }

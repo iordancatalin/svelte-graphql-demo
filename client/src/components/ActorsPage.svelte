@@ -52,7 +52,7 @@
     .create-actor-panel {
         position: fixed;
         bottom: 20px;
-        right: 0;
+        right: 20px;
 
         width: 400px;
     }

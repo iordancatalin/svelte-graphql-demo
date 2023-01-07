@@ -1,5 +1,7 @@
 <script lang="ts">
     import { MoviesSummary } from "../graphql/generated";
+    import CreateMovie from "./CreateMovie.svelte";
+    import Genres from "./Genres.svelte";
     import Movie from "./MovieSummary.svelte";
 
     $: movies = MoviesSummary({});
@@ -10,6 +12,10 @@
         {#each $movies?.data?.allMovies || [] as movie}
             <Movie {movie} />
         {/each}
+    </div>
+
+    <div class="create-actor-panel">
+        <CreateMovie />
     </div>
 </section>
 
@@ -30,5 +36,13 @@
         flex: 1;
 
         padding: 20px;
+    }
+
+    .create-actor-panel {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+
+        width: 400px;
     }
 </style>

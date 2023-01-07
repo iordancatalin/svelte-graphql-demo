@@ -1,0 +1,17 @@
+mutation CreateMovie(
+  $title: String!
+  $description: String!
+  $genres: [String!]!
+  $imageURL: String!
+  $duration: Int!
+) {
+  createMovie(
+    title: $title
+    description: $description
+    genres: $genres
+    imageURL: $imageURL
+    duration: $duration
+  ) {
+    id
+  }
+}

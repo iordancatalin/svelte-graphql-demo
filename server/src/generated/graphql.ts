@@ -32,7 +32,6 @@ export type Movie = {
   __typename?: 'Movie';
   characters: Array<Character>;
   description?: Maybe<Scalars['String']>;
-  directors: Array<Scalars['String']>;
   duration: Scalars['Int'];
   genres: Array<Scalars['String']>;
   id: Scalars['String'];
@@ -69,7 +68,6 @@ export type MutationCreateCharacterArgs = {
 
 export type MutationCreateMovieArgs = {
   description?: InputMaybe<Scalars['String']>;
-  directors: Array<Scalars['String']>;
   duration: Scalars['Int'];
   genres: Array<Scalars['String']>;
   imageURL: Scalars['String'];
@@ -241,7 +239,6 @@ export type CharacterResolvers<ContextType = any, ParentType extends ResolversPa
 export type MovieResolvers<ContextType = any, ParentType extends ResolversParentTypes['Movie'] = ResolversParentTypes['Movie']> = {
   characters?: Resolver<Array<ResolversTypes['Character']>, ParentType, ContextType>;
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  directors?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   duration?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   genres?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -254,7 +251,7 @@ export type MovieResolvers<ContextType = any, ParentType extends ResolversParent
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   createActor?: Resolver<ResolversTypes['Actor'], ParentType, ContextType, RequireFields<MutationCreateActorArgs, 'imageURL' | 'name'>>;
   createCharacter?: Resolver<Maybe<ResolversTypes['Character']>, ParentType, ContextType, RequireFields<MutationCreateCharacterArgs, 'actorId' | 'characterName' | 'movieId'>>;
-  createMovie?: Resolver<ResolversTypes['Movie'], ParentType, ContextType, RequireFields<MutationCreateMovieArgs, 'directors' | 'duration' | 'genres' | 'imageURL' | 'title'>>;
+  createMovie?: Resolver<ResolversTypes['Movie'], ParentType, ContextType, RequireFields<MutationCreateMovieArgs, 'duration' | 'genres' | 'imageURL' | 'title'>>;
   createReview?: Resolver<Maybe<ResolversTypes['Review']>, ParentType, ContextType, RequireFields<MutationCreateReviewArgs, 'body' | 'movieId' | 'title'>>;
   deleteActor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeleteActorArgs, 'id'>>;
   deleteCharacter?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, RequireFields<MutationDeleteCharacterArgs, 'id' | 'movieId'>>;

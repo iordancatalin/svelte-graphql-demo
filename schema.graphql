@@ -8,11 +8,10 @@ type Query {
 type Mutation {
     createMovie(
         title: String!,
-        description: String, 
+        description: String,
         genres: [String!]!, 
         imageURL: String!, 
         duration: Int!,
-        directors: [String!]!
     ): Movie!,
     deleteMovie(id: String!): String!,
     createReview(movieId: String!, title: String!, body: String!): Review,
@@ -30,7 +29,6 @@ type Movie {
     genres: [String!]!,
     imageURL: String!,
     duration: Int!,
-    directors: [String!]!,
     reviews: [Review!]!,
     characters: [Character!]!,
 }

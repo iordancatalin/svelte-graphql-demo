@@ -15,7 +15,6 @@ export const transformMovie = (movieDB: MovieDB): Movie => ({
   id: movieDB.id,
   title: movieDB.title,
   description: movieDB.description,
-  directors: movieDB.directors,
   duration: movieDB.duration,
   genres: movieDB.genres,
   imageURL: movieDB.imageURL,

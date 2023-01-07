@@ -1,38 +1,55 @@
 <script lang="ts">
-    import { CreateActor, ActorsDoc } from "../graphql/generated";
+    import Genres from "./Genres.svelte";
+    import { CreateMovie, MoviesSummaryDoc } from "../graphql/generated";
 
     let expanded = false;
-    let name: string;
+
+    let title: string;
+    let description: string;
     let imageURL: string;
+    let genres: string[] = [];
+    let duration: number;
 
     const toggle = () => {
         expanded = !expanded;
     };
 
-    const createActor = async (event: Event) => {
+    const handleGenresSelected = (
+        selectedGenresEvent: CustomEvent<{ genres: string[] }>
+    ) => {
+        genres = selectedGenresEvent.detail.genres;
+    };
+
+    const createMovie = async (event: Event) => {
         event.preventDefault();
 
-        await CreateActor({
+        await CreateMovie({
             variables: {
-                name,
+                title,
+                description,
+                duration,
+                genres,
                 imageURL,
             },
             refetchQueries: (mutationResult) =>
-                !mutationResult.errors ? [ActorsDoc] : [],
+                !mutationResult.errors ? [MoviesSummaryDoc] : [],
         }).then(() => {
-            name = undefined;
+            title = undefined;
+            description = undefined;
             imageURL = undefined;
+            duration = undefined;
+            genres = [];
 
             expanded = false;
         });
     };
 </script>
 
-<div class="create-actor-container">
+<div class="create-movie-container">
     <form
-        on:submit={createActor}
+        on:submit={createMovie}
         class:expanded
-        class="create-actor-form-container"
+        class="create-movie-form-container"
     >
         <button
             on:click={() => (expanded = false)}
@@ -44,17 +61,44 @@
 
         <div class="inputs-container">
             <div class="form-field">
-                <label for="actor-name"> Name </label>
-                <input bind:value={name} id="actor-name" type="text" />
+                <label for="movie-title"> Title* </label>
+                <input bind:value={title} id="movie-title" type="text" />
             </div>
 
             <div class="form-field">
-                <label for="actor-name"> Image URL </label>
-                <input bind:value={imageURL} id="actor-name" type="text" />
+                <label for="movie-description"> Description </label>
+                <textarea bind:value={description} id="movie-description" />
+            </div>
+
+            <div class="form-field">
+                <label for="movie-image-url"> Image URL* </label>
+                <input bind:value={imageURL} id="movie-image-url" type="text" />
+            </div>
+
+            <div class="form-field">
+                <label for="movie-duration"> Duration (minutes)*</label>
+                <input
+                    bind:value={duration}
+                    id="movie-duration"
+                    type="number"
+                />
+            </div>
+
+            <div class="form-field">
+                <!-- svelte-ignore a11y-label-has-associated-control -->
+                <label> Genres* </label>
+                <Genres on:genresSelected={handleGenresSelected} />
             </div>
         </div>
 
-        <button class:disabled={!name || !imageURL} class="create-actor-button">
+        <button
+            class="create-movie-button"
+            disabled={!title ||
+                !imageURL ||
+                !duration ||
+                !genres ||
+                genres.length === 0}
+        >
             Create
         </button>
     </form>
@@ -63,21 +107,21 @@
 </div>
 
 <style>
-    .create-actor-container {
+    .create-movie-container {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         gap: 20px;
     }
 
-    .create-actor-form-container {
+    .create-movie-form-container {
         display: none;
         flex-direction: column;
 
         padding: 20px;
 
         width: 350px;
-        height: 400px;
+        height: 700px;
 
         border-radius: 10px;
 
@@ -85,11 +129,11 @@
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.9);
     }
 
-    .create-actor-form-container.expanded {
+    .create-movie-form-container.expanded {
         display: flex;
     }
 
-    .create-actor-container .close-modal-button {
+    .create-movie-container .close-modal-button {
         color: var(--color-secondary);
         background-color: transparent;
 
@@ -119,13 +163,13 @@
         background-color: var(--color-secondary);
     }
 
-    .create-actor-form-container .form-field {
+    .create-movie-form-container .form-field {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
 
-    .create-actor-container .inputs-container {
+    .create-movie-container .inputs-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -138,15 +182,18 @@
         color: var(--color-secondary);
     }
 
-    .form-field input {
+    .form-field input,
+    .form-field textarea {
         color: var(--color-secondary);
         background-color: var(--background-side-banner-input);
         border: 1px solid var(--color-secondary);
         padding: 10px;
         border-radius: 7px;
+
+        resize: none;
     }
 
-    .create-actor-button {
+    .create-movie-button {
         align-self: flex-end;
 
         padding: 10px 30px;
@@ -157,7 +204,7 @@
         border-radius: 10px;
     }
 
-    .create-actor-button.disabled {
+    .create-movie-button:disabled {
         cursor: not-allowed;
         background-color: var(--color-gray);
     }

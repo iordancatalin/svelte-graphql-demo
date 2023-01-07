@@ -20,7 +20,6 @@ export interface MovieDB {
     id: string;
     title: string;
     description?: string;
-    directors: string[];
     duration: number;
     genres: string[];
     imageURL: string;

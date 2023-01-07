@@ -12,7 +12,6 @@ const movieMutationResolver: MutationResolvers<AppContext> = {
         title,
         description,
         duration,
-        directors,
         genres,
         imageURL
     }, { database }) {
@@ -21,7 +20,6 @@ const movieMutationResolver: MutationResolvers<AppContext> = {
             title,
             description,
             duration,
-            directors,
             genres,
             imageURL
         });
