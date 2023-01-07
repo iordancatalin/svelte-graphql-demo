@@ -15,3 +15,7 @@ mutation CreateMovie(
     id
   }
 }
+
+mutation DeleteMovie($id: String!) {
+    deleteMovie(id: $id)
+}

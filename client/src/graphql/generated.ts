@@ -160,6 +160,13 @@ export type CreateMovieMutationVariables = Exact<{
 
 export type CreateMovieMutation = { __typename?: 'Mutation', createMovie: { __typename?: 'Movie', id: string } };
 
+export type DeleteMovieMutationVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type DeleteMovieMutation = { __typename?: 'Mutation', deleteMovie: string };
+
 export type ActorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -194,6 +201,11 @@ export const CreateMovieDoc = gql`
   ) {
     id
   }
+}
+    `;
+export const DeleteMovieDoc = gql`
+    mutation DeleteMovie($id: String!) {
+  deleteMovie(id: $id)
 }
     `;
 export const ActorsDoc = gql`
@@ -246,6 +258,18 @@ export const CreateMovie = (
           ) => {
             const m = client.mutate<CreateMovieMutation, CreateMovieMutationVariables>({
               mutation: CreateMovieDoc,
+              ...options,
+            });
+            return m;
+          }
+export const DeleteMovie = (
+            options: Omit<
+              MutationOptions<any, DeleteMovieMutationVariables>, 
+              "mutation"
+            >
+          ) => {
+            const m = client.mutate<DeleteMovieMutation, DeleteMovieMutationVariables>({
+              mutation: DeleteMovieDoc,
               ...options,
             });
             return m;
