@@ -48,4 +48,12 @@
 
         padding: 20px;
     }
+
+    .create-actor-panel {
+        position: fixed;
+        bottom: 20px;
+        right: 0;
+
+        width: 400px;
+    }
 </style>
