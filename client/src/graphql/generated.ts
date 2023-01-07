@@ -156,6 +156,11 @@ export type ActorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ActorsQuery = { __typename?: 'Query', actors: Array<{ __typename?: 'Actor', id: string, name: string, imageURL: string }> };
 
+export type MoviesSummaryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MoviesSummaryQuery = { __typename?: 'Query', allMovies: Array<{ __typename?: 'Movie', id: string, imageURL: string, title: string }> };
+
 
 export const CreateActorDoc = gql`
     mutation CreateActor($name: String!, $imageURL: String!) {
@@ -175,6 +180,15 @@ export const ActorsDoc = gql`
     id
     name
     imageURL
+  }
+}
+    `;
+export const MoviesSummaryDoc = gql`
+    query MoviesSummary {
+  allMovies {
+    id
+    imageURL
+    title
   }
 }
     `;
@@ -224,6 +238,41 @@ export const Actors = (
                 query: ObservableQuery<
                   ActorsQuery,
                   ActorsQueryVariables
+                >;
+              }
+            >(
+              { data: {} as any, loading: true, error: undefined, networkStatus: 1, query: q },
+              (set) => {
+                q.subscribe((v: any) => {
+                  set({ ...v, query: q });
+                });
+              }
+            );
+            return result;
+          }
+        
+export const MoviesSummary = (
+            options: Omit<
+              WatchQueryOptions<MoviesSummaryQueryVariables>, 
+              "query"
+            >
+          ): Readable<
+            ApolloQueryResult<MoviesSummaryQuery> & {
+              query: ObservableQuery<
+                MoviesSummaryQuery,
+                MoviesSummaryQueryVariables
+              >;
+            }
+          > => {
+            const q = client.watchQuery({
+              query: MoviesSummaryDoc,
+              ...options,
+            });
+            var result = readable<
+              ApolloQueryResult<MoviesSummaryQuery> & {
+                query: ObservableQuery<
+                  MoviesSummaryQuery,
+                  MoviesSummaryQueryVariables
                 >;
               }
             >(

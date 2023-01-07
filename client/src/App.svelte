@@ -2,7 +2,7 @@
 	import ActorsPage from "./components/ActorsPage.svelte";
 	import MoviesPage from "./components/MoviesPage.svelte";
 
-	let selectedTab: "Movies" | "Actors" = "Actors";
+	let selectedTab: "Movies" | "Actors" = "Movies";
 </script>
 
 <section>
@@ -24,9 +24,7 @@
 	<main>
 		{#if selectedTab === "Movies"}
 			<MoviesPage />
-		{/if}
-
-		{#if selectedTab === "Actors"}
+		{:else}
 			<ActorsPage />
 		{/if}
 	</main>

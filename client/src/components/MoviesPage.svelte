@@ -1,10 +1,34 @@
 <script lang="ts">
+    import { MoviesSummary } from "../graphql/generated";
+    import Movie from "./MovieSummary.svelte";
+
+    $: movies = MoviesSummary({});
 </script>
 
-<h1>This is the Movies page</h1>
+<section class="movies-container">
+    <div class="movies-panel">
+        {#each $movies?.data?.allMovies || [] as movie}
+            <Movie {movie} />
+        {/each}
+    </div>
+</section>
 
 <style>
-    h1 {
-        height: 2000px;
+    .movies-container {
+        display: flex;
+        width: 100%;
+    }
+
+    .movies-panel {
+        padding: 10px;
+        height: 0;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        flex: 1;
+
+        padding: 20px;
     }
 </style>

@@ -8,7 +8,7 @@
     "start:client": "cd ./client && npm run dev",
     "start": "conc \"npm run start:server\" \"npm run start:client\"",
     "codegen:server": "cd ./server && npm run codegen",
-    "codegen:client": "cd ./client && npm run codege",
+    "codegen:client": "cd ./client && npm run codegen",
     "codegen": "conc \"npm run codegen:server\" \"npm run codegen:client\""
   },
   "repository": {
