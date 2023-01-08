@@ -149,6 +149,14 @@ export type DeleteActorMutationVariables = Exact<{
 
 export type DeleteActorMutation = { __typename?: 'Mutation', deleteActor?: string | null };
 
+export type DeleteCharacterMutationVariables = Exact<{
+  movieId: Scalars['String'];
+  id: Scalars['String'];
+}>;
+
+
+export type DeleteCharacterMutation = { __typename?: 'Mutation', deleteCharacter?: string | null };
+
 export type CreateMovieMutationVariables = Exact<{
   title: Scalars['String'];
   description: Scalars['String'];
@@ -177,6 +185,13 @@ export type MoviesSummaryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MoviesSummaryQuery = { __typename?: 'Query', allMovies: Array<{ __typename?: 'Movie', id: string, imageURL: string, title: string }> };
 
+export type MovieByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type MovieByIdQuery = { __typename?: 'Query', movieById?: { __typename?: 'Movie', id: string, title: string, description?: string | null, genres: Array<string>, imageURL: string, duration: number, reviews: Array<{ __typename?: 'Review', id: string, title: string, body: string, createdAt: string }>, characters: Array<{ __typename?: 'Character', id: string, name: string, playedBy?: { __typename?: 'Actor', id: string, name: string, imageURL: string } | null }> } | null };
+
 
 export const CreateActorDoc = gql`
     mutation CreateActor($name: String!, $imageURL: String!) {
@@ -188,6 +203,11 @@ export const CreateActorDoc = gql`
 export const DeleteActorDoc = gql`
     mutation DeleteActor($id: String!) {
   deleteActor(id: $id)
+}
+    `;
+export const DeleteCharacterDoc = gql`
+    mutation DeleteCharacter($movieId: String!, $id: String!) {
+  deleteCharacter(movieId: $movieId, id: $id)
 }
     `;
 export const CreateMovieDoc = gql`
@@ -226,6 +246,33 @@ export const MoviesSummaryDoc = gql`
   }
 }
     `;
+export const MovieByIdDoc = gql`
+    query MovieById($id: String!) {
+  movieById(id: $id) {
+    id
+    title
+    description
+    genres
+    imageURL
+    duration
+    reviews {
+      id
+      title
+      body
+      createdAt
+    }
+    characters {
+      id
+      name
+      playedBy {
+        id
+        name
+        imageURL
+      }
+    }
+  }
+}
+    `;
 export const CreateActor = (
             options: Omit<
               MutationOptions<any, CreateActorMutationVariables>, 
@@ -246,6 +293,18 @@ export const DeleteActor = (
           ) => {
             const m = client.mutate<DeleteActorMutation, DeleteActorMutationVariables>({
               mutation: DeleteActorDoc,
+              ...options,
+            });
+            return m;
+          }
+export const DeleteCharacter = (
+            options: Omit<
+              MutationOptions<any, DeleteCharacterMutationVariables>, 
+              "mutation"
+            >
+          ) => {
+            const m = client.mutate<DeleteCharacterMutation, DeleteCharacterMutationVariables>({
+              mutation: DeleteCharacterDoc,
               ...options,
             });
             return m;
@@ -331,6 +390,41 @@ export const MoviesSummary = (
                 query: ObservableQuery<
                   MoviesSummaryQuery,
                   MoviesSummaryQueryVariables
+                >;
+              }
+            >(
+              { data: {} as any, loading: true, error: undefined, networkStatus: 1, query: q },
+              (set) => {
+                q.subscribe((v: any) => {
+                  set({ ...v, query: q });
+                });
+              }
+            );
+            return result;
+          }
+        
+export const MovieById = (
+            options: Omit<
+              WatchQueryOptions<MovieByIdQueryVariables>, 
+              "query"
+            >
+          ): Readable<
+            ApolloQueryResult<MovieByIdQuery> & {
+              query: ObservableQuery<
+                MovieByIdQuery,
+                MovieByIdQueryVariables
+              >;
+            }
+          > => {
+            const q = client.watchQuery({
+              query: MovieByIdDoc,
+              ...options,
+            });
+            var result = readable<
+              ApolloQueryResult<MovieByIdQuery> & {
+                query: ObservableQuery<
+                  MovieByIdQuery,
+                  MovieByIdQueryVariables
                 >;
               }
             >(

@@ -3,10 +3,15 @@
         DeleteMovie,
         MoviesSummary,
         MoviesSummaryDoc,
+        MovieById,
+        Movie,
     } from "../graphql/generated";
+    import Character from "./Character.svelte";
     import CreateMovie from "./CreateMovie.svelte";
-    import Genres from "./Genres.svelte";
-    import Movie from "./MovieSummary.svelte";
+    import MovieDetails from "./MovieDetails.svelte";
+    import MovieSummary from "./MovieSummary.svelte";
+
+    let selectedMovie: Movie | null = null;
 
     $: movies = MoviesSummary({});
 
@@ -21,12 +26,37 @@
                 !mutationResult.errors ? [MoviesSummaryDoc] : [],
         });
     };
+
+    const handleMovieDetails = (
+        movieDetailsEvent: CustomEvent<{ id: string }>
+    ) => {
+        MovieById({ variables: { id: movieDetailsEvent.detail.id } }).subscribe(
+            (value) => (selectedMovie = value.data.movieById)
+        );
+    };
+
+    const handleCloseDetails = () => {
+        selectedMovie = null;
+    };
 </script>
 
 <section class="movies-container">
+    {#if selectedMovie != null}
+        <div class="movie-details-container">
+            <MovieDetails
+                on:closeDetails={handleCloseDetails}
+                movie={selectedMovie}
+            />
+        </div>
+    {/if}
+
     <div class="movies-panel">
         {#each $movies?.data?.allMovies || [] as movie}
-            <Movie on:deleteMovie={handleDeleteMovie} {movie} />
+            <MovieSummary
+                on:deleteMovie={handleDeleteMovie}
+                on:openMovieDetails={handleMovieDetails}
+                {movie}
+            />
         {/each}
     </div>
 
@@ -39,6 +69,10 @@
     .movies-container {
         display: flex;
         width: 100%;
+    }
+
+    .movie-details-container {
+        width: 500px;
     }
 
     .movies-panel {

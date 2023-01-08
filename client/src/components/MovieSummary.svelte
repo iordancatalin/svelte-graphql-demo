@@ -23,8 +23,14 @@
     <div class="movie-image-container">
         <img src={movie.imageURL} alt={movie.title} class="actor-image" />
 
-        <div class="delete-container">
-            <button on:click={deleteMovie}>&times;</button>
+        <div class="actions-container">
+            <div class="delete-container">
+                <button on:click={deleteMovie}>&times;</button>
+            </div>
+
+            <div class="open-details-container">
+                <button on:click={openMovieDetails}> &#128065;</button>
+            </div>
         </div>
     </div>
 
@@ -73,16 +79,12 @@
         cursor: pointer;
     }
 
-    .movie-image-container:hover .delete-container {
+    .movie-image-container:hover .actions-container {
         opacity: 1;
     }
 
-    .delete-container {
+    .actions-container {
         cursor: pointer;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
         position: absolute;
         left: 0;
@@ -92,12 +94,27 @@
         width: 100%;
         opacity: 0;
 
-        background-color: var(--color-transparent-red);
-
         transition: opacity 0.5s ease-in-out;
     }
 
-    .delete-container button {
+    .delete-container,
+    .open-details-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 50%;
+    }
+
+    .delete-container {
+        background-color: var(--color-transparent-red);
+    }
+
+    .open-details-container {
+        background-color: var(--color-transparent-blue);
+    }
+
+    .actions-container button {
         width: 40px;
         height: 40px;
         border-radius: 1000px;
@@ -109,7 +126,7 @@
         transition: color 0.5s, background-color 0.5s;
     }
 
-    .delete-container button:hover {
+    .actions-container button:hover {
         cursor: pointer;
         color: var(--color-red);
         background-color: var(--color-secondary);

@@ -39,6 +39,7 @@
 			--color-gray: #bdbbbb;
 			--color-red: #ab0707;
 			--color-transparent-red: #ff000075;
+			--color-transparent-blue: #205395b6;
 			--background-side-banner: #121111;
 			--background-side-banner-input: #0d0c0c;
 		}

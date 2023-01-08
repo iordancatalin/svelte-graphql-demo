@@ -5,3 +5,29 @@ query MoviesSummary {
         title,
       }
 }
+
+query MovieById($id: String!) {
+    movieById(id: $id) {
+        id,
+        title,
+        description,
+        genres,
+        imageURL,
+        duration,
+        reviews {
+            id,
+            title,
+            body,
+            createdAt
+        },
+        characters {
+            id,
+            name,
+            playedBy {
+                id,
+                name,
+                imageURL
+            }
+        },
+    }
+}

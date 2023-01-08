@@ -1,0 +1,3 @@
+mutation DeleteCharacter($movieId: String!, $id: String!) {
+    deleteCharacter(movieId: $movieId, id: $id)
+}

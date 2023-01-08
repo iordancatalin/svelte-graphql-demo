@@ -19,7 +19,7 @@
             ],
             "characters": [
                 {
-                    "id": "character-d29d11c9-a6be-40e8-8357-be948ca8a187",
+                    "id": "character-26235202-891a-419f-95e8-8722adc58ff2",
                     "actorId": "actor-69829812-c1d4-4b59-9a07-538d3185960e",
                     "name": "Batman"
                 }
@@ -39,12 +39,30 @@
                 "Action",
                 "Adventure",
                 "Drama"
+            ],
+            "characters": [
+                {
+                    "id": "character-669227db-93e1-44af-9437-306e6546f59c",
+                    "actorId": "actor-2adceed0-e520-4ebf-9677-9c88bda300fd",
+                    "name": "Iron Man"
+                },
+                {
+                    "id": "character-f5ffd47f-f065-49db-b782-9443207f5476",
+                    "actorId": "actor-b3ec58c8-513e-4ea7-931a-fe5a2f80034c",
+                    "name": "Black Widow"
+                }
             ]
         },
         {
             "id": "movie-4664a3b8-d300-4ae9-877a-193893122f11",
             "reviews": [],
-            "characters": [],
+            "characters": [
+                {
+                    "id": "character-b3d4e053-ec7a-405a-98d2-33c7f07b9eb2",
+                    "actorId": "actor-9af68250-3638-44b1-b5d4-07905c476079",
+                    "name": "Hutch Mansell"
+                }
+            ],
             "title": "Nobody",
             "description": "A docile family man slowly reveals his true character after his house gets burgled by two petty thieves, which, coincidentally, leads him into a bloody war with a Russian crime boss.",
             "duration": 92,
@@ -53,6 +71,27 @@
                 "Drama"
             ],
             "imageURL": "https://m.media-amazon.com/images/M/MV5BMjM5YTRlZmUtZGVmYi00ZjE2LWIyNzAtOWVhMDk1MDdkYzhjXkEyXkFqcGdeQXVyMjMxOTE0ODA@._V1_.jpg"
+        },
+        {
+            "id": "movie-32176329-98f9-4777-9630-aba27215e0ec",
+            "reviews": [],
+            "characters": [
+                {
+                    "id": "character-beff9388-d082-459e-b4e7-2a93d5efd787",
+                    "actorId": "actor-e6477174-61de-4854-8c3d-fe59dd5e5e01",
+                    "name": "Wednesday Addams"
+                }
+            ],
+            "title": "Wednesday",
+            "description": "Follows Wednesday Addams' years as a student, when she attempts to master her emerging psychic ability, thwart and solve the mystery that embroiled her parents.",
+            "duration": 45,
+            "genres": [
+                "Action",
+                "Adventure",
+                "Drama",
+                "Crime"
+            ],
+            "imageURL": "https://m.media-amazon.com/images/M/MV5BM2ZmMjEyZmYtOGM4YS00YTNhLWE3ZDMtNzQxM2RhNjBlODIyXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg"
         }
     ],
     "reviews": [

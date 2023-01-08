@@ -216,7 +216,7 @@ export class Database {
         const movie = this._data.movies.find(movie => movie.id === movieId);
 
         if (movie) {
-            movie.characters.filter(character => character.id !== id);
+            movie.characters = movie.characters.filter(character => character.id !== id);
             this._updateDatabaseFile();
 
             return id;
